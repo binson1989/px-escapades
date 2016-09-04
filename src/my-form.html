@@ -1,0 +1,33 @@
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+
+<dom-module id="my-form">
+    <template>
+        <form is="iron-form" id="form" method="POST" action="/"
+            on-iron-form-presubmit="onPreSubmit" on-iron-form-response="onResponse" on-iron-form-error="onError">
+            <button type="submit" class="btn">Check out</button>
+        </form>
+    </template>
+    <script>
+        MyForm = Polymer({
+            is: "my-form",
+            properties: {
+                testEquipmentId: {
+                    type: Number,
+                    readOnly: true
+                }
+            },
+            factoryImpl: function(id) {
+                this._setTestEquipmentId(id);
+            },
+            onPreSubmit: function(event) {
+
+            },
+            onResponse: function(event) {
+
+            },
+            onError: function(event) {
+
+            }
+        });
+    </script>
+</dom-module>

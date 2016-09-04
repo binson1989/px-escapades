@@ -1,0 +1,72 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../bower_components/px-data-table/px-data-table.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="my-form.html">
+
+<dom-module id="my-new-view">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      :host {
+        display: block;
+
+        padding: 16px;
+      }
+    </style>
+
+    <h1>New view</h1>
+    <paper-slider min="-100" max="100" value="50"></paper-slider>
+    <px-data-table filterable table-data="[[data]]">
+      <px-data-table-column sortable filterable name="name" label="Name"></px-data-table-column>
+      <px-data-table-column sortable filterable name="resource" label="Resource"></px-data-table-column>
+      <px-data-table-column sortable filterable name="date" label="Due Date"></px-data-table-column>
+      <px-data-table-column sortable filterable name="checkout" label="Checkout" type="html"></px-data-table-column>
+    </px-data-table>
+    <iron-ajax url="data.json" on-response="handleResponse" auto></iron-ajax>
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: "checkout-view",
+      properties: {
+        
+      }
+    });
+    Polymer({
+      is: 'my-new-view',
+      properties: {
+        data: {
+          type: Array,
+          value: []
+        },
+        checkoutHtml: {
+          type: String,
+          value: function() {
+            return '<my-form></my-form>';
+          }
+        }
+      },
+      ready: function() {
+      },
+      handleResponse: function(response) {
+        var result = response.detail.response;
+        var list = [];
+        for(var i=0;i<result.length;i++) {
+          var item = {};
+          item.id = result[i].id;
+          item.name = result[i].name;
+          item.resource = result[i].resource;
+          var element = this.createResourceElement(item.id);
+          item.checkout = element.innerHtml;
+          item.date = new Date().toLocaleDateString();
+          list.push(item);
+        }
+        this.data = list;
+      },
+      createResourceElement: function(id) {
+        return new MyForm(id); 
+      }
+    });
+  </script>
+</dom-module>
