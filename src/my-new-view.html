@@ -14,25 +14,23 @@
         padding: 16px;
       }
     </style>
-
+    <template id="new1">
+      <p>Success</p>
+    </template>
     <h1>New view</h1>
     <paper-slider min="-100" max="100" value="50"></paper-slider>
     <px-data-table filterable table-data="[[data]]">
-      <px-data-table-column sortable filterable name="name" label="Name"></px-data-table-column>
+      <px-data-table-column sortable filterable name="name" label="Name" type="html"></px-data-table-column>
       <px-data-table-column sortable filterable name="resource" label="Resource"></px-data-table-column>
       <px-data-table-column sortable filterable name="date" label="Due Date"></px-data-table-column>
       <px-data-table-column sortable filterable name="checkout" label="Checkout" type="html"></px-data-table-column>
     </px-data-table>
     <iron-ajax url="data.json" on-response="handleResponse" auto></iron-ajax>
+
+    
   </template>
   <!-- Creates the element's prototype and registers it -->
   <script>
-    Polymer({
-      is: "checkout-view",
-      properties: {
-        
-      }
-    });
     Polymer({
       is: 'my-new-view',
       properties: {
@@ -40,32 +38,45 @@
           type: Array,
           value: []
         },
-        checkoutHtml: {
+        temp: {
           type: String,
-          value: function() {
-            return '<my-form></my-form>';
-          }
+          value: 'World'
         }
       },
       ready: function() {
+        var self = this;
+        var proto = Object.create(HTMLElement.prototype, {
+          createdCallback: {
+            value: function() {
+              var t = self.$$('#new1');
+              var clone = document.importNode(t.content, true);
+              this.createShadowRoot().appendChild(clone);
+            }
+          }
+        });
+        document.registerElement("hello-there", {prototype: proto});
       },
       handleResponse: function(response) {
         var result = response.detail.response;
         var list = [];
+        this.$.new1;
         for(var i=0;i<result.length;i++) {
           var item = {};
           item.id = result[i].id;
-          item.name = result[i].name;
+          item.name = this._getNameElement();
           item.resource = result[i].resource;
-          var element = this.createResourceElement(item.id);
-          item.checkout = element.innerHtml;
+          var element = this.getResourceElement(item.id);
+          item.checkout = element;
           item.date = new Date().toLocaleDateString();
           list.push(item);
         }
         this.data = list;
       },
-      createResourceElement: function(id) {
-        return new MyForm(id); 
+      getResourceElement: function(id) {
+        return '<my-form test-equipment-id="' + id + '"></my-form>'; 
+      },
+      _getNameElement() {
+        return '<hello-there></hello-there>';
       }
     });
   </script>

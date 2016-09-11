@@ -8,12 +8,12 @@
         </form>
     </template>
     <script>
-        MyForm = Polymer({
+         Polymer({
             is: "my-form",
             properties: {
                 testEquipmentId: {
                     type: Number,
-                    readOnly: true
+                    reflectToAttribute: true
                 }
             },
             factoryImpl: function(id) {
