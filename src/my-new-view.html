@@ -4,7 +4,9 @@
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="my-form.html">
 
+
 <dom-module id="my-new-view">
+  <link rel="import" type="css" href="styles.css">
   <!-- Defines the element's style and local DOM -->
   <template>
     <style>
@@ -27,7 +29,25 @@
     </px-data-table>
     <iron-ajax url="data.json" on-response="handleResponse" auto></iron-ajax>
 
-    
+    <form>
+      <fieldset class="form-field">
+        <legend>Basic form</legend>
+        <ol class="list-bare">
+          <li class="form-field">
+            <label for="input1">Name</label>
+            <input id="input1" class="text-input" type="text" placeholder="First name">
+            <small class="form-field__help">Enter your name here</small>
+          </li>
+          <li class="form-field">
+            <input id="chk1" type="checkbox">
+            <label class="label--inline" for="chk1">No Lastname</label>
+          </li>
+        </ol>
+        <input class="btn btn--primary" type="submit" value="Submit">
+        <input class="btn" type="reset" value="Cancel">
+      </fieldset>
+    </form>
+
   </template>
   <!-- Creates the element's prototype and registers it -->
   <script>
