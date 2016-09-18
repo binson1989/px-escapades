@@ -3,7 +3,8 @@
 <link rel="import" href="../bower_components/px-data-table/px-data-table.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="my-form.html">
-
+<link rel="import" href="../bower_components/px-app-nav/px-app-nav.html">
+<link rel="import" href="../bower_components/px-theme/px-theme.html">
 
 <dom-module id="my-new-view">
   <link rel="import" type="css" href="styles.css">
@@ -35,11 +36,11 @@
         <ol class="list-bare">
           <li class="form-field">
             <label for="input1">Name</label>
-            <input id="input1" class="text-input" type="text" placeholder="First name">
+            <input id="input1" class="text-input" type="text" placeholder="First name" required>
             <small class="form-field__help">Enter your name here</small>
           </li>
           <li class="form-field">
-            <input id="chk1" type="checkbox">
+            <input id="chk1" type="checkbox" required>
             <label class="label--inline" for="chk1">No Lastname</label>
           </li>
         </ol>
@@ -48,6 +49,14 @@
       </fieldset>
     </form>
 
+    <div class="flex flex--col">
+                  <div class="demo u-p+">
+                    <div style="height:350px;">
+                      <px-app-nav style="position:inherit" nav-items="[[items]]">
+                      </px-app-nav>
+                    </div>
+                  </div>
+    </div>
   </template>
   <!-- Creates the element's prototype and registers it -->
   <script>
@@ -61,6 +70,12 @@
         temp: {
           type: String,
           value: 'World'
+        },
+        items: {
+          type: Array,
+          value: [
+            {"path":"tab1","icon":"fa-exclamation-triangle","eventName":"firstItem","label":"Alerts","subitems":[{"label":"Sub Category 1","href":null,"class":"","subitemclass":"","subitemlistclass":"","selected":false},{"label":"Sub Category 2","eventName":"subitemTwo","href":null,"class":"","subitemclass":"","subitemlistclass":"","selected":false},{"label":"Sub Category 3","path":"subitem3","href":"#subitem3","class":"","subitemclass":"","subitemlistclass":"","selected":false}],"href":"#tab1","class":"","subitemclass":"visuallyhidden","subitemlistclass":"visuallyhidden list-bare","selected":false,"subSelected":false},{"path":"tab2","icon":"fa-briefcase","label":"Cases","subitems":[{"label":"Sub Category 1","href":null,"class":"","subitemclass":"","subitemlistclass":"","selected":false},{"label":"Sub Category 2","href":null,"class":"","subitemclass":"","subitemlistclass":"","selected":false},{"label":"Sub Category 3","href":null,"class":"","subitemclass":"","subitemlistclass":"","selected":false}],"href":"#tab2","class":"","subitemclass":"visuallyhidden","subitemlistclass":"visuallyhidden list-bare","selected":false,"subSelected":false},{"path":"tab3","icon":"fa-bar-chart","label":"Analysis","href":"#tab3","class":"","subitemclass":"visuallyhidden","subitemlistclass":"visuallyhidden list-bare","selected":false,"subSelected":false},{"path":"tab4","icon":"fa-tachometer","label":"Dashboards","href":"#tab4","class":"","subitemclass":"visuallyhidden","subitemlistclass":"visuallyhidden list-bare","selected":false,"subSelected":false}
+          ]
         }
       },
       ready: function() {
