@@ -5,6 +5,8 @@
 <link rel="import" href="my-form.html">
 <link rel="import" href="../bower_components/px-app-nav/px-app-nav.html">
 <link rel="import" href="../bower_components/px-theme/px-theme.html">
+<link rel="import" href="../bower_components/px-dropdown/px-dropdown.html">
+<link rel="import" href="../bower_components/px-context-browser/px-context-browser.html"/>
 
 <dom-module id="my-new-view">
   <link rel="import" type="css" href="styles.css">
@@ -57,6 +59,22 @@
                     </div>
                   </div>
     </div>
+
+    <template is="dom-repeat" items={{optionsArray}}>
+    <div class="flex flex--col">
+                <div class="demo u-p+">
+
+                  <px-context-browser
+                    label-field="[[item.labelField]]"
+                    id-field="[[item.idField]]"
+                    browser-context="[[getData(index)]]"
+                    show-chevron="[[item.showChevron]]"
+                    show-column-browser="[[item.showColumnBrowser]]"
+                    opened-item-name="[[item.openedItemName]]"
+                    ></px-context-browser>
+                  </div>
+                </div>
+    </template>
   </template>
   <!-- Creates the element's prototype and registers it -->
   <script>
@@ -76,6 +94,132 @@
           value: [
             {"path":"tab1","icon":"fa-exclamation-triangle","eventName":"firstItem","label":"Alerts","subitems":[{"label":"Sub Category 1","href":null,"class":"","subitemclass":"","subitemlistclass":"","selected":false},{"label":"Sub Category 2","eventName":"subitemTwo","href":null,"class":"","subitemclass":"","subitemlistclass":"","selected":false},{"label":"Sub Category 3","path":"subitem3","href":"#subitem3","class":"","subitemclass":"","subitemlistclass":"","selected":false}],"href":"#tab1","class":"","subitemclass":"visuallyhidden","subitemlistclass":"visuallyhidden list-bare","selected":false,"subSelected":false},{"path":"tab2","icon":"fa-briefcase","label":"Cases","subitems":[{"label":"Sub Category 1","href":null,"class":"","subitemclass":"","subitemlistclass":"","selected":false},{"label":"Sub Category 2","href":null,"class":"","subitemclass":"","subitemlistclass":"","selected":false},{"label":"Sub Category 3","href":null,"class":"","subitemclass":"","subitemlistclass":"","selected":false}],"href":"#tab2","class":"","subitemclass":"visuallyhidden","subitemlistclass":"visuallyhidden list-bare","selected":false,"subSelected":false},{"path":"tab3","icon":"fa-bar-chart","label":"Analysis","href":"#tab3","class":"","subitemclass":"visuallyhidden","subitemlistclass":"visuallyhidden list-bare","selected":false,"subSelected":false},{"path":"tab4","icon":"fa-tachometer","label":"Dashboards","href":"#tab4","class":"","subitemclass":"visuallyhidden","subitemlistclass":"visuallyhidden list-bare","selected":false,"subSelected":false}
           ]
+        },
+        optionsArray: {
+          type: Array,
+          value: [
+        {
+          labelField:"name",
+          idField:"identifier",
+          showChevron:true,
+          openedItemName: "Select Context",
+          showColumnBrowser: false
+        },
+        {
+          labelField:"name",
+          idField:"identifier",
+          showChevron:true,
+          openedItemName: "Select Context",
+          showColumnBrowser: false
+        }
+      ]
+        },
+        browserContextArray: {
+          type: Array,
+          value: [{
+        "data": [
+            {
+                "identifier": "001-1",
+                "name": "Lots of Children",
+                "isOpenable" : true,
+                "hasChildren": true
+            },
+            {
+              "identifier": "001-2",
+              "name": "Deep nested",
+              "isOpenable" : true,
+              "children": [
+                    {
+                        "identifier": "001-2a",
+                        "name": "Nested Child 1",
+                        "isOpenable" : true,
+                        "children": [
+                          {
+                            "identifier": "001-2aa",
+                            "name": "Nested Grandchild 1",
+                            "isOpenable" : true,
+                            "children" : [{
+                              "identifier": "001-2aba",
+                              "name": "Nested Great Grandchild 1",
+                              "isOpenable" : true
+                            },
+                            {
+                              "identifier": "001-2abb",
+                              "name": "Nested Great Grandchild 2",
+                              "isOpenable" : true
+                            },
+                            {
+                              "identifier": "001-2abc",
+                              "name": "Nested_Great_Grandchild_3333333333333333333333333333333",
+                              "isOpenable" : true,
+                              "selectedAsset": true
+                            }],
+                            "meta": { "parentId": "001-2ab" }
+                          },
+                          {
+                            "identifier": "001-2ab",
+                            "name": "Nested Grandchild 2",
+                            "isOpenable" : true
+                          },
+                          {
+                            "identifier": "001-2ac",
+                            "name": "Nested Grandchild 3",
+                            "isOpenable" : true
+                          }
+                        ],
+                        "meta": { "parentId": "001-2a" }
+                    },
+                    {
+                      "identifier": "001-2b",
+                      "name": "Nested Child 2",
+                      "isOpenable" : true
+                    },
+                    {
+                      "identifier": "001-2c",
+                      "name": "Nested Child 3",
+                      "isOpenable" : true
+                    }
+                ],
+                "meta": { "parentId": "001-2" }
+            },
+            {
+            "identifier": "001-3",
+            "name": "Nothing Below Me",
+            "isOpenable" : true
+            },
+            {
+            "identifier": "001-4",
+            "name": "Nothing Below, Not openable"
+           }
+        ],
+        "meta": { "parentId": null }
+        }, {
+          "data": [
+            {
+              "name": "Lots of children",
+              "identifier": "001-1",
+              "isOpenable": true,
+              "hasChildren": true
+            }, {
+              "name": "Deep nested",
+              "identifier": "001-2",
+              "isOpenable": true,
+              "hasChildren": true
+            }, {
+              "name": "Nothing Below Me",
+              "identifier": "001-3",
+              "isOpenable": true
+            }, {
+              "name": "Nothing Below, Not openable",
+              "identifier": "001-4",
+              "isOpenable": false
+            }
+          ],
+          "meta": {
+            "parentId": null
+          }
+        }
+      ]
         }
       },
       ready: function() {
@@ -112,6 +256,9 @@
       },
       _getNameElement() {
         return '<hello-there></hello-there>';
+      },
+      getData: function(index) {
+        return this.browserContextArray[index];
       }
     });
   </script>
