@@ -7,11 +7,13 @@
 <link rel="import" href="../bower_components/px-theme/px-theme.html">
 <link rel="import" href="../bower_components/px-dropdown/px-dropdown.html">
 <link rel="import" href="../bower_components/px-context-browser/px-context-browser.html"/>
+<link rel="import" href="../bower_components/px-theme/px-app-styles.html">
 
 <dom-module id="my-new-view">
   <link rel="import" type="css" href="styles.css">
   <!-- Defines the element's style and local DOM -->
   <template>
+    <style include="px-app-styles"></style>
     <style>
       :host {
         display: block;
@@ -38,12 +40,31 @@
         <ol class="list-bare">
           <li class="form-field">
             <label for="input1">Name</label>
-            <input id="input1" class="text-input" type="text" placeholder="First name" required>
-            <small class="form-field__help">Enter your name here</small>
+            <input id="input1" class="text-input input--regular" type="text" placeholder="First name" required>
+            <!--<small class="form-field__help">Enter your name here</small>-->
+          </li>
+          <li class="form-field">
+            <label for="input2">Address</label>
+            <input id="input2" class="text-input input--regular" type="text" placeholder="Address" required>
+            <!--<small class="form-field__help">Enter your address here</small>-->
+          </li>
+          <li class="form-field">
+            <label for="input3">Landmark</label>
+            <input id="input3" class="text-input input--regular" type="text" placeholder="Landmark" required>
+            <!--<small class="form-field__help">Enter your landmark here</small>-->
           </li>
           <li class="form-field">
             <input id="chk1" type="checkbox" required>
             <label class="label--inline" for="chk1">No Lastname</label>
+          </li>
+          <li class="form-field">
+            <px-dropdown display-value="Elephant">
+              <px-dropdown-content extend-dropdown='true' 
+              extend-dropdown-by='25' 
+              max-cont-character-width='10' 
+              items='[{"key":"one","val":"Iphone"},{"key":"two","val":"Android"},{"key":"three","val":"Blackberry"},{"key":"four","val":"Windows Phone"}]'>
+              </px-dropdown-content>
+            </px-dropdown>
           </li>
         </ol>
         <input class="btn btn--primary" type="submit" value="Submit">
