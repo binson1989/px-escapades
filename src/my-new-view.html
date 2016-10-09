@@ -7,7 +7,7 @@
 <link rel="import" href="../bower_components/px-theme/px-theme.html">
 <link rel="import" href="../bower_components/px-dropdown/px-dropdown.html">
 <link rel="import" href="../bower_components/px-context-browser/px-context-browser.html"/>
-<link rel="import" href="../bower_components/px-theme/px-app-styles.html">
+<!--<link rel="import" href="../bower_components/px-theme/px-app-styles.html">-->
 
 <dom-module id="my-new-view">
   <link rel="import" type="css" href="styles.css">
@@ -44,8 +44,8 @@
     <form>
       <fieldset class="form-field">
         <legend>Basic form</legend>
-        <div class="flex flex--row flex--wrap flex--justify form-field u-mt">
-          <div class="flex___item">
+        <div class="flex flex--row flex--wrap flex--justify form-field">
+          <div class="flex___item u-1/1-lap">
             <input class="text-input input--regular" type="text" placeholder="Hello 1">
           </div>
           <div class="flex___item">
@@ -59,6 +59,34 @@
               <label for="def">Field 2</label>
               <input id="def" class="text-input input--regular flex___item" type="text" placeholder="New field 2" required>
             </div>-->
+        </div>
+        <div class="layout">
+          <div class="layout__item u-1/2 u-1/1-portable form-field">
+            <label for="i1">Hello 1</label>
+            <input id="i1" class="text-input input--regular" type="text" placeholder="Hello 1">
+          </div>
+          <div class="layout__item u-1/2 u-1/1-portable form-field">
+            <label for="i2">Hello 2</label>
+            <input id="i2" class="text-input input--regular" type="text" placeholder="Hello 2">
+          </div>
+          <div class="layout__item u-1/2 u-1/1-portable form-field">
+            <label for="i3">Hello 3</label>
+            <input id="i3" class="text-input input--regular" type="text" placeholder="Hello 3">
+          </div>
+          <div class="layout__item u-1/3 u-1/1-portable form-field">
+            <label for="drop1">Hello 3</label>
+            <px-dropdown id="drop1" display-value="Elephant">
+              <px-dropdown-content extend-dropdown='true' 
+              extend-dropdown-by='25' 
+              max-cont-character-width='10' 
+              items='[{"key":"one","val":"Iphoneqwerty"},{"key":"two","val":"Android"},{"key":"three","val":"Blackberry"},{"key":"four","val":"Windows Phone"}]'>
+              </px-dropdown-content>
+            </px-dropdown>
+          </div>
+          <div class="layout__item u-1/2 u-1/1-portable form-field">
+            <label for="i5">Hello 3</label>
+            <input id="i5" class="text-input input--regular" type="text" placeholder="Hello 3">
+          </div>
         </div>
         <!--<div class="flex flex--row flex--wrap flex--justify">
           <div class="flex___item flex flex--col">
