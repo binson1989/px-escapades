@@ -20,6 +20,13 @@
 
         padding: 16px;
       }
+      .flex, .inline--flex{
+        border: solid 4px #000;
+      }
+      .flex___item {
+        flex:1;
+        border: solid 2px #000;
+      }
     </style>
     <template id="new1">
       <p>Success</p>
@@ -37,27 +44,55 @@
     <form>
       <fieldset class="form-field">
         <legend>Basic form</legend>
-        <ol class="list-bare">
-          <li class="form-field">
+        <div class="flex flex--row flex--wrap flex--justify form-field u-mt">
+          <div class="flex___item">
+            <input class="text-input input--regular" type="text" placeholder="Hello 1">
+          </div>
+          <div class="flex___item">
+            <input class="text-input input--regular" type="text" placeholder="Hello 2">
+          </div>
+            <!--<div class="inline--flex flex--col flex___item">
+              <label for="abc">Field 1</label>
+              <input id="abc" class="text-input input--regular flex___item" type="text" placeholder="New field 1" required>
+            </div>
+            <div class="inline--flex flex--col flex___item">
+              <label for="def">Field 2</label>
+              <input id="def" class="text-input input--regular flex___item" type="text" placeholder="New field 2" required>
+            </div>-->
+        </div>
+        <!--<div class="flex flex--row flex--wrap flex--justify">
+          <div class="flex___item flex flex--col">
+            <label for="input11">Name</label>
+            <input id="input11" class="text-input input--regular" type="text" placeholder="First name" required>
+          </div>
+          <div class="flex___item">
+            <label for="input12">Address 1</label>
+            <input id="input12" class="text-input input--regular" type="text" placeholder="Address" required>
+          </div>
+          <div class="flex__item">
+            <label for="input13">Address 2</label>
+            <input id="input13" class="text-input input--regular" type="text" placeholder="Address" required>
+          </div>
+        </div>
+        
+        <ol class="list-bare flex flex--row flex--wrap flex--justify">
+          <li class="flex___item form-field flex flex--col">
             <label for="input1">Name</label>
             <input id="input1" class="text-input input--regular" type="text" placeholder="First name" required>
-            <!--<small class="form-field__help">Enter your name here</small>-->
           </li>
-          <li class="form-field">
+          <li class="flex___item form-field flex flex--col">
             <label for="input2">Address</label>
             <input id="input2" class="text-input input--regular" type="text" placeholder="Address" required>
-            <!--<small class="form-field__help">Enter your address here</small>-->
           </li>
-          <li class="form-field">
+          <li class="flex___item form-field flex flex--col">
             <label for="input3">Landmark</label>
             <input id="input3" class="text-input input--regular" type="text" placeholder="Landmark" required>
-            <!--<small class="form-field__help">Enter your landmark here</small>-->
           </li>
-          <li class="form-field">
+          <li class="flex___item form-field flex flex--col">
             <input id="chk1" type="checkbox" required>
             <label class="label--inline" for="chk1">No Lastname</label>
           </li>
-          <li class="form-field">
+          <li class="flex___item form-field flex flex--col">
             <px-dropdown display-value="Elephant">
               <px-dropdown-content extend-dropdown='true' 
               extend-dropdown-by='25' 
@@ -66,9 +101,9 @@
               </px-dropdown-content>
             </px-dropdown>
           </li>
-        </ol>
-        <input class="btn btn--primary" type="submit" value="Submit">
-        <input class="btn" type="reset" value="Cancel">
+        </ol>-->
+        <!--<input class="btn btn--primary" type="submit" value="Submit">
+        <input class="btn" type="reset" value="Cancel">-->
       </fieldset>
     </form>
 
