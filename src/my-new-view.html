@@ -7,6 +7,7 @@
 <link rel="import" href="../bower_components/px-theme/px-theme.html">
 <link rel="import" href="../bower_components/px-dropdown/px-dropdown.html">
 <link rel="import" href="../bower_components/px-context-browser/px-context-browser.html"/>
+<link rel="import" href="../bower_components/px-simple-line-chart/px-simple-line-chart.html" />
 <!--<link rel="import" href="../bower_components/px-theme/px-app-styles.html">-->
 
 <dom-module id="my-new-view">
@@ -159,6 +160,15 @@
                   </div>
                 </div>
     </template>
+    <div class="flex flex--col">
+      <div class="flex__item">
+        <px-simple-line-chart width="auto" min="0.5" max="3.0" columns="5" rows="3" threshold="1.8"
+                              line-data="[[1397102460000,1.99],[1397139660000,1.92],[1397177400000,1.97],
+                              [1397228040000,1.12],[1397248260000,1.09],[1397291280000,1],[1397318100000,1.99],
+                              [1397342100000,1.75],[1397390820000,1.11],[1397408100000,1.93],[1397458800000,1.84],[1397522940000,1.99]]">
+        </px-simple-line-chart>
+      </div>
+    </div>
   </template>
   <!-- Creates the element's prototype and registers it -->
   <script>
