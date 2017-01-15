@@ -1,11 +1,15 @@
 <dom-module id="my-element1">
     <template>
-        <button type="input">Click me!!!</button>
+        <button type="input" disabled$="[[isDisabled]]">Click me!!!</button>
     </template>
     <script>
     Polymer({
         is: 'my-element1',
         properties: {
+            isDisabled: {
+                type: Boolean,
+                value: true
+            }
         },
         ready: function() {
             console.log('My element 1 ready!!!');
