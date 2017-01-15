@@ -1,0 +1,27 @@
+<dom-module id="my-auth">
+    <template>
+        <template is="dom-if" if="[[_shouldShow(widget)]]">
+            <content id="myContent"></content>
+        </template>
+    </template>
+    <script>
+        Polymer({
+            is: 'my-auth',
+            properties: {
+                widget: {
+                    type: String
+                }
+            },
+            ready: function() {
+                var distributed = this.getContentChildren('#myContent');
+                console.log('Length:' + distributed.length);
+            },
+            _shouldShow: function(widget) {
+                if(widget === 'routine') {
+                    return true;
+                }
+                return false;
+            }
+        })
+    </script>
+</dom-module>

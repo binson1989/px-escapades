@@ -3,6 +3,8 @@
 <link rel="import" href="../bower_components/px-data-table/px-data-table.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="my-form.html">
+<link rel="import" href="my-element1.html">
+<link rel="import" href="my-auth.html">
 <link rel="import" href="../bower_components/px-app-nav/px-app-nav.html">
 <link rel="import" href="../bower_components/px-theme/px-theme.html">
 <link rel="import" href="../bower_components/px-dropdown/px-dropdown.html">
@@ -249,6 +251,17 @@
         time-data="Date">
 
         </px-vis-xy-chart>
+      </div>
+      <div class="flex__item">
+        <my-auth widget="routine">
+          <my-element1></my-element1>
+        </my-auth widget="abc">
+        <my-auth>
+          <my-element1></my-element1>
+        </my-auth>
+        <my-auth widget="def">
+          <my-element1></my-element1>
+        </my-auth>
       </div>
     </div>
   </template>
